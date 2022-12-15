@@ -7,7 +7,7 @@ from download_to_telegram import download_to_telegram
 from dotenv import load_dotenv
 
 
-def infinity_download_to_telegram(frequency_publish, telegram_bot_api_key): 
+def infinity_download_to_telegram(telegram_bot_api_key, frequency_publish,): 
 
     names_photos = []
     
@@ -30,7 +30,7 @@ def infinity_download_to_telegram(frequency_publish, telegram_bot_api_key):
                     continue
               
                 download_to_telegram(telegram_bot_api_key, f'images/{name_photo}')
-    
+                 
                 time.sleep(3600*frequency_publish)
 
 
@@ -47,5 +47,5 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
                         
-    download_to_telegram(telegram_bot_api_key, args.frequency_publish)
+    infinity_download_to_telegram(telegram_bot_api_key, args.frequency_publish)
       
