@@ -1,4 +1,5 @@
 import os
+import argparse
 
 from dotenv import load_dotenv
 from download_to_telegram import download_to_telegram
@@ -14,13 +15,25 @@ if __name__ == '__main__':
 
     my_secret = os.environ['NASA_API_KEY']
 
-    fetch_spacex_images('latest')
+    telegram_bot_api_key = os.environ['TELEGRAM_BOT_API_KEY']
+  
+    parser = argparse.ArgumentParser(
+        description='Программа скачивает фотографии космоса из интернета и отпраляет их в телеграм-канал'
+    )
+
+    parser.add_argument('id', help='ID запуска spacex', nargs='?', default='latest')
+  
+    parser.add_argument('-t', '--time', help='Частота публикации фотографий (указать в часах)', nargs='?', default=4)
+
+    args = parser.parse_args()
+
+    fetch_spacex_images(args.id)
   
     fetch_nasa_planetary_apod_picture(my_secret)    
   
     fetch_nasa_epic_picture(my_secret)
 
-    download_to_telegram()
+    download_to_telegram(args.time, telegram_bot_api_key)
 
    
       
