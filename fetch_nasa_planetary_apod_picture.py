@@ -34,22 +34,22 @@ def fetch_nasa_planetary_apod_picture(api_key):
     nasa_photos_information = response.json()
 
     not_photo_count = 0
-
-    pprint(response.json())
   
     for nasa_photo_information_number, nasa_photo_information in enumerate(nasa_photos_information):
 
+        if nasa_photo_information['media_type'] == 'other' :
+
+                continue   
         
         link_nasa_photo = nasa_photo_information['url']
-
-
+      
         image_formated = find_image_format(link_nasa_photo)
        
         if image_formated :
 
             hd_link_nasa_photo = nasa_photo_information['url']
             
-            #download_image(hd_link_nasa_photo, f"images/nasa_apod_{nasa_photo_information_number-not_photo_count}{image_formated}")
+            download_image(hd_link_nasa_photo, f"images/nasa_apod_{nasa_photo_information_number-not_photo_count}{image_formated}")
           
         else:
           
