@@ -1,56 +1,57 @@
 import os
 import telegram
-import time
 import random
 import argparse
 
 from dotenv import load_dotenv
 
 
-def download_to_telegram(frequency_publish, telegram_bot_api_key):
+def download_to_telegram(telegram_bot_api_key, photo_path):
 
     bot = telegram.Bot(token=telegram_bot_api_key)
-
-    names_photos = []
-    
-    for address, dirs, files in os.walk('images'):
-        
-        for name in files:
-      
-            names_photos.append(name)
-
-    while True :
-      
-        random.shuffle(names_photos)
-      
-        for name_photo in names_photos:
-          
-            stats = os.stat(f'images/{name_photo}')
-                
-            if stats.st_size > 20000000:
-    
-                continue
+  
+    if photo_path: 
               
-            bot.send_photo(chat_id='@space_beautiful_photos', photo=open(f'images/{name_photo}', 'rb'))
+        bot.send_photo(chat_id='@space_beautiful_photos', photo=open(photo_path, 'rb'))
+
+    else:
+      
+        names_photos = []
     
-            time.sleep(3600*frequency_publish)
+        for address, dirs, files in os.walk('images'):
+        
+            for name in files:
+      
+                names_photos.append(name)
 
 
+        random_photo = random.choice(names_photos)
+       
+        bot.send_photo(chat_id='@space_beautiful_photos', photo=open(f'images/{random_photo}','rb'))
+
+    
 if __name__ == '__main__':
 
     load_dotenv()
-
+  
     telegram_bot_api_key = os.environ['TELEGRAM_BOT_API_KEY']
   
     parser = argparse.ArgumentParser(
         description='Программа публикует картинки из в канал телеграм-канал.')
-    
 
-    parser.add_argument('frequency_publish', help='Частота публикации фотографий (указать в часах)',type=int, nargs='?', default=4)
+    parser.add_argument('-p', '--path', help='Путь к файлу для скачивания')
 
     args = parser.parse_args()
+
+    stats = os.stat(args.path)
+                
+    if stats.st_size > 20000000:
     
-    download_to_telegram(args.frequency_publish, telegram_bot_api_key)
+        print("File size is too big, please reduce it")
+        
+    else:
+            
+        download_to_telegram(telegram_bot_api_key, args.path)
     
   
  

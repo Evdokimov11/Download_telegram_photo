@@ -1,8 +1,9 @@
 import os
 import argparse
 
+
 from dotenv import load_dotenv
-from download_to_telegram import download_to_telegram
+from infinity_download_to_telegram import infinity_download_to_telegram
 from download_image import download_image
 from fetch_nasa_epic_picture import fetch_nasa_epic_picture
 from fetch_spacex_images import fetch_spacex_images
@@ -13,7 +14,7 @@ if __name__ == '__main__':
 
     load_dotenv()
 
-    nasa_api_key = os.environ['NASA_API_KEY']
+    my_secret = os.environ['NASA_API_KEY']
 
     telegram_bot_api_key = os.environ['TELEGRAM_BOT_API_KEY']
   
@@ -22,18 +23,23 @@ if __name__ == '__main__':
     )
 
     parser.add_argument('id', help='ID запуска spacex', nargs='?', default='latest')
-  
-    parser.add_argument('-t', '--time', help='Частота публикации фотографий (указать в часах)', type=int, nargs='?', default=4)
+
+    parser.add_argument('-f', '--frequency_publish', help='Частота публикации фотографий (указать в часах)', type=int, nargs='?', default=4)
 
     args = parser.parse_args()
 
     fetch_spacex_images(args.id)
   
-    fetch_nasa_planetary_apod_picture(nasa_api_key)    
+    fetch_nasa_planetary_apod_picture(my_secret)    
   
-    fetch_nasa_epic_picture(nasa_api_key)
+    fetch_nasa_epic_picture(my_secret)
+    
+    infinity_download_to_telegram(args.frequency_publish, telegram_bot_api_key)
+    
 
-    download_to_telegram(args.time, telegram_bot_api_key)
+    
+
+            
 
    
       

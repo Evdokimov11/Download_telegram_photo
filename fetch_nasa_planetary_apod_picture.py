@@ -1,9 +1,10 @@
 import requests
 import os
+from pprint import pprint
 
+from dotenv import load_dotenv
 from download_image import download_image
 from urllib.parse import urlparse
-from dotenv import load_dotenv
 
 def find_image_format(url):
 
@@ -33,14 +34,14 @@ def fetch_nasa_planetary_apod_picture(api_key):
     nasa_photos_information = response.json()
 
     not_photo_count = 0
+
+    pprint(response.json())
   
     for nasa_photo_information_number, nasa_photo_information in enumerate(nasa_photos_information):
-      
-        if nasa_photo_information['media_type'] == 'other' :
+
         
-                continue
-      
         link_nasa_photo = nasa_photo_information['url']
+
 
         image_formated = find_image_format(link_nasa_photo)
        
@@ -48,7 +49,7 @@ def fetch_nasa_planetary_apod_picture(api_key):
 
             hd_link_nasa_photo = nasa_photo_information['url']
             
-            download_image(hd_link_nasa_photo, f"images/nasa_apod_{nasa_photo_information_number-not_photo_count}{image_formated}")
+            #download_image(hd_link_nasa_photo, f"images/nasa_apod_{nasa_photo_information_number-not_photo_count}{image_formated}")
           
         else:
           
@@ -57,8 +58,8 @@ def fetch_nasa_planetary_apod_picture(api_key):
 if __name__ == '__main__':
 
     load_dotenv()
-
-    nasa_api_key = os.environ['NASA_API_KEY']
+ 
+    my_secret = os.environ['NASA_API_KEY']
   
-    fetch_nasa_planetary_apod_picture(nasa_api_key)    
+    fetch_nasa_planetary_apod_picture(my_secret)    
   

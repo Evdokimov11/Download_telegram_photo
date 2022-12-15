@@ -1,10 +1,10 @@
 import requests
 import os
 
+from dotenv import load_dotenv
 from download_image import download_image
 from urllib.parse import urlparse
 from datetime import datetime
-from dotenv import load_dotenv
 
 def fetch_nasa_epic_picture(api_key):
   
@@ -39,12 +39,10 @@ def fetch_nasa_epic_picture(api_key):
         download_image(url, f"images/nasa_epic_{nasa_photo_information_number}.png")
     
 if __name__ == '__main__':
- 
+
     load_dotenv()
  
-    nasa_api_key = os.environ['NASA_API_KEY']
+    my_secret = os.environ['NASA_API_KEY']
 
-    fetch_nasa_epic_picture(nasa_api_key)
-  
-  
+    fetch_nasa_epic_picture(my_secret)
   
