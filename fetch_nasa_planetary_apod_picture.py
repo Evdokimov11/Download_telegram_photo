@@ -54,7 +54,7 @@ if __name__ == '__main__':
 
     load_dotenv()
 
-    my_secret = os.environ['NASA_API_KEY']
+    nasa_api_key = os.environ['NASA_API_KEY']
   
-    fetch_nasa_planetary_apod_picture(my_secret)    
+    fetch_nasa_planetary_apod_picture(nasa_api_key)    
   

@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     load_dotenv()
 
-    my_secret = os.environ['NASA_API_KEY']
+    nasa_api_key = os.environ['NASA_API_KEY']
 
     telegram_bot_api_key = os.environ['TELEGRAM_BOT_API_KEY']
   
@@ -29,9 +29,9 @@ if __name__ == '__main__':
 
     fetch_spacex_images(args.id)
   
-    fetch_nasa_planetary_apod_picture(my_secret)    
+    fetch_nasa_planetary_apod_picture(nasa_api_key)    
   
-    fetch_nasa_epic_picture(my_secret)
+    fetch_nasa_epic_picture(nasa_api_key)
 
     download_to_telegram(args.time, telegram_bot_api_key)
 
