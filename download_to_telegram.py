@@ -2,6 +2,9 @@ import os
 import telegram
 import time
 import random
+import argparse
+
+from dotenv import load_dotenv
 
 
 def download_to_telegram(frequency_publish, telegram_bot_api_key):
@@ -35,6 +38,8 @@ def download_to_telegram(frequency_publish, telegram_bot_api_key):
 
 if __name__ == '__main__':
 
+    load_dotenv()
+
     telegram_bot_api_key = os.environ['TELEGRAM_BOT_API_KEY']
   
     parser = argparse.ArgumentParser(
@@ -45,7 +50,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     
-    fetch_spacex_images(args.frequency_publish)
+    download_to_telegram(args.frequency_publish, telegram_bot_api_key)
     
   
  
