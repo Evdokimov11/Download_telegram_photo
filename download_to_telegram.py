@@ -7,5 +7,4 @@ def download_to_telegram():
 
     bot = telegram.Bot(token=telegram_bot_api_key)
 
-    bot.send_message(chat_id='@space_beautiful_photos', text='Hi John!')
-  
+    bot.send_document(chat_id='@space_beautiful_photos', document=open('images/nasa_apod_0.gif', 'rb'))
