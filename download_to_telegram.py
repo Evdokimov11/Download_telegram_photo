@@ -3,8 +3,6 @@ import telegram
 import time
 import random
 
-from PIL import Image
-
 
 def download_to_telegram(frequency_publish, telegram_bot_api_key):
 
