@@ -8,7 +8,6 @@ def fetch_spacex_images(id):
 
     url = f'https://api.spacexdata.com/v5/launches/{id}' 
 
-    #url = 'https://api.spacexdata.com/v5/launches/latest'
 
     response = requests.get(url)
 
