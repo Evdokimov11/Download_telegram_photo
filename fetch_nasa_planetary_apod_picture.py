@@ -36,6 +36,10 @@ def fetch_nasa_planetary_apod_picture(api_key):
   
     for nasa_photo_information_number, nasa_photo_information in enumerate(nasa_photos_information):
       
+        if nasa_photo_information['media_type'] == 'other' :
+        
+                continue
+      
         link_nasa_photo = nasa_photo_information['url']
 
         image_formated = find_image_format(link_nasa_photo)
