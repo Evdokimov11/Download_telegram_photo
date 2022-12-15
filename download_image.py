@@ -1,5 +1,4 @@
 import requests
-import time
 import os
 
 from pathlib import Path
@@ -25,8 +24,6 @@ def download_image(url, file_path):
     with open(file_path, 'wb') as file:
         
         file.write(response.content)
-      
-        time.sleep(1) #my internet is too slow, so i use 'sleep' to wait'
   
     return
 
