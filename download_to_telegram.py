@@ -46,7 +46,7 @@ if __name__ == '__main__':
         description='Программа публикует картинки из в канал телеграм-канал.')
     
 
-    parser.add_argument('frequency_publish', help='Частота публикации фотографий (указать в часах)', nargs='?', default=4)
+    parser.add_argument('frequency_publish', help='Частота публикации фотографий (указать в часах)',type=int, nargs='?', default=4)
 
     args = parser.parse_args()
     

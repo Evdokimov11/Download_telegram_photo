@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
     parser.add_argument('id', help='ID запуска spacex', nargs='?', default='latest')
   
-    parser.add_argument('-t', '--time', help='Частота публикации фотографий (указать в часах)', nargs='?', default=4)
+    parser.add_argument('-t', '--time', help='Частота публикации фотографий (указать в часах)', type=int, nargs='?', default=4)
 
     args = parser.parse_args()
 
