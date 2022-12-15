@@ -19,8 +19,6 @@ def fetch_nasa_epic_picture(api_key):
 
     response.raise_for_status()
 
-    information = []
-    
     for nasa_photo_information_number, nasa_photo_information in enumerate(response.json()) :
 
         if nasa_photo_information_number > 7:
