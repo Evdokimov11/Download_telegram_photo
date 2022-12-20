@@ -4,10 +4,9 @@ import argparse
 
 from download_image import download_image
 
-def fetch_spacex_images(id):
+def fetch_spacex_images(launch_id):
 
-    url = f'https://api.spacexdata.com/v5/launches/{id}' 
-
+    url = f'https://api.spacexdata.com/v5/launches/{launch_id}' 
 
     response = requests.get(url)
 
