@@ -7,13 +7,13 @@ from download_image import download_image
 from urllib.parse import urlparse
 from datetime import datetime
 
-def fetch_nasa_epic_picture(api_key, amount):
+def fetch_nasa_epic_picture(api_key, amount, time):
   
     url = 'https://epic.gsfc.nasa.gov/api/natural'
     
     payload = {
         'api_key': api_key,   
-        'date' : '2022-01-01',
+        'date' : time,
     }
 
     response = requests.get(url, params=payload)
@@ -52,8 +52,10 @@ if __name__ == '__main__':
     )
 
     parser.add_argument('amount', help='Кол-во фотографий для скачивания', nargs='?', default='7')
+    
+    parser.add_argument('-d', '--date', help='Дата фотографий Земли в формате YYYY-MM-DD', nargs='?', default='2022-01-01')
 
     args = parser.parse_args()
 
-    fetch_nasa_epic_picture(my_secret, args.amount)
+    fetch_nasa_epic_picture(my_secret, args.amount, args.date)
   

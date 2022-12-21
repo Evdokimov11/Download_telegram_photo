@@ -29,6 +29,8 @@ if __name__ == '__main__':
     parser.add_argument('-s', '--space_photo_amount', help='Кол-во фотографий для скачивания фотографий космоса', type=int, nargs='?', default=45)
     
     parser.add_argument('-e', '--earth_photo_amount', help='Кол-во фотографий для скачивания фотографий Земли', type=int, nargs='?', default=7)
+    
+    parser.add_argument('-d', '--date', help='Дата фотографий Земли в формате YYYY-MM-DD', nargs='?', default='2022-01-01')
 
     args = parser.parse_args()
 
@@ -36,7 +38,7 @@ if __name__ == '__main__':
   
     fetch_nasa_planetary_apod_picture(my_secret, args.space_photo_amount)    
   
-    fetch_nasa_epic_picture(my_secret, args.earth_photo_amount)
+    fetch_nasa_epic_picture(my_secret, args.earth_photo_amount, args.date)
     
     infinity_download_to_telegram(telegram_bot_api_key, args.frequency_publish)
     
