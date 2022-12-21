@@ -33,7 +33,7 @@ if __name__ == '__main__':
         description='Программа скачивает фотографии по ссылке'
     )
 
-    parser.add_argument('link', help='ссылка на фото')
+    parser.add_argument('link', help='ссылка на фото', nargs='?', default='')
     
     parser.add_argument('-p', '--path', help='Путь к файлу для скачивания')
 

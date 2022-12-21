@@ -5,35 +5,24 @@ import argparse
 
 from download_to_telegram import download_to_telegram
 from dotenv import load_dotenv
+from get_names_photos import get_names_photos
 
 
 def infinity_download_to_telegram(telegram_bot_api_key, frequency_publish, chat_id): 
 
-    names_photos = []
+    names_photos = get_names_photos()
     
-    for address, dirs, files in os.walk('images'):
-        
-        for name in files:
-      
-            names_photos.append(name)
+    while True :
 
-        while True :
-
-            random.shuffle(names_photos)
+        random.shuffle(names_photos)
       
-            for name_photo in names_photos:
+        for name_photo in names_photos:
             
-                path_photo = os.path.join('images', name_photo)
-        
-                stats = os.stat(path_photo)
+            path_photo = os.path.join('images', name_photo)
               
-                if stats.st_size > 20000000:
-    
-                    continue
-              
-                download_to_telegram(telegram_bot_api_key, path_photo, chat_id)
+            download_to_telegram(telegram_bot_api_key, path_photo, chat_id)
                  
-                time.sleep(3600*frequency_publish)
+            time.sleep(3600*frequency_publish)
 
 
 if __name__ == '__main__':

@@ -4,6 +4,8 @@ import random
 import argparse
 
 from dotenv import load_dotenv
+from get_names_photos import get_names_photos
+
 
 
 def download_to_telegram(telegram_bot_api_key, photo_path, chat_id):
@@ -16,18 +18,15 @@ def download_to_telegram(telegram_bot_api_key, photo_path, chat_id):
 
     else:
       
-        names_photos = []
-    
-        for address, dirs, files in os.walk('images'):
-        
-            for name in files:
-      
-                names_photos.append(name)
-
+        names_photos = get_names_photos()
 
         random_photo = random.choice(names_photos)
+        
+        rand_photo_path = os.path.join('images', random_photo)
+        
+        with open(rand_photo_path, 'rb') as photo:
        
-        bot.send_photo(chat_id, photo=open(f'images/{random_photo}','rb'))
+            bot.send_photo(chat_id, photo)
 
     
 if __name__ == '__main__':
@@ -39,21 +38,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Программа публикует картинки из в канал телеграм-канал.')
 
-    parser.add_argument('-p', '--path', help='Путь к файлу для скачивания')
+    parser.add_argument('-p', '--path', help='Путь к файлу для скачивания', nargs='?', default='')
     
     parser.add_argument('-c', '--chat_id', help='Айди чата в формате @chat_id')
 
     args = parser.parse_args()
 
-    stats = os.stat(args.path)
-                
-    if stats.st_size > 20000000:
-    
-        print("File size is too big, please reduce it")
-        
-    else:
-            
-        download_to_telegram(telegram_bot_api_key, args.path, args.chat_id)
+    download_to_telegram(telegram_bot_api_key, args.path, args.chat_id)
     
   
  
