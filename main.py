@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     parser.add_argument('-f', '--frequency_publish', help='Частота публикации фотографий (указать в часах)', type=int, nargs='?', default=4)
     
-    parser.add_argument('-s', '--space_photo_amount', help='Кол-во фотографий для скачивания фотографий космоса', type=int, nargs='?', default=45)
+    parser.add_argument('-s', '--space_photo_amount', help='Кол-во фотографий Земли для скачивания', type=int, nargs='?', default=45)
     
     parser.add_argument('-e', '--earth_photo_amount', help='Кол-во фотографий для скачивания фотографий Земли', type=int, nargs='?', default=7)
     
@@ -36,11 +36,11 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    #fetch_spacex_images(args.launch_id)
+    fetch_spacex_images(args.launch_id)
   
-    #fetch_nasa_planetary_apod_picture(nasa_api_key, args.space_photo_amount)    
+    fetch_nasa_planetary_apod_picture(nasa_api_key, args.space_photo_amount)    
   
-    #fetch_nasa_epic_picture(nasa_api_key, args.earth_photo_amount, args.date)
+    fetch_nasa_epic_picture(nasa_api_key, args.earth_photo_amount, args.date)
     
     infinity_download_to_telegram(telegram_bot_api_key, args.frequency_publish, args.chat_id)
     
