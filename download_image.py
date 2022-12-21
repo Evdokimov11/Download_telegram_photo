@@ -8,8 +8,6 @@ import argparse
 
 def download_image(url, file_path, payload = {}):
   
-    print(file_path)
-  
     divided_url = urlparse(file_path)
   
     path_url = divided_url.path
@@ -33,7 +31,7 @@ if __name__ == '__main__':
         description='Программа скачивает фотографии по ссылке'
     )
 
-    parser.add_argument('link', help='ссылка на фото', nargs='?', default='')
+    parser.add_argument('link', help='ссылка на фото')
     
     parser.add_argument('-p', '--path', help='Путь к файлу для скачивания')
 
