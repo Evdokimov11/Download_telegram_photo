@@ -19,9 +19,9 @@ def fetch_nasa_epic_picture(api_key):
 
     response.raise_for_status()
 
-    for nasa_photo_information_number, nasa_photo_information in enumerate(response.json()) :
+    for nasa_photo_number, nasa_photo_information in enumerate(response.json()) :
 
-        if nasa_photo_information_number > 7:
+        if nasa_photo_number > 7:
             break
 
         name_photo = nasa_photo_information ['image']
@@ -34,7 +34,7 @@ def fetch_nasa_epic_picture(api_key):
   
         url = f'https://api.nasa.gov/EPIC/archive/natural/{short_date_link_formated}/png/{name_photo}.png?api_key={api_key}'
         
-        path_photo = os.path.join('images', f'nasa_epic_{nasa_photo_information_number}.png')
+        path_photo = os.path.join('images', f'nasa_epic_{nasa_photo_number}.png')
 
         download_image(url, path_photo)
     
