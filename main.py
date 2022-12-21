@@ -32,13 +32,13 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    fetch_spacex_images(args.id)
+    fetch_spacex_images(args.launch_id)
   
     fetch_nasa_planetary_apod_picture(my_secret, args.space_photo_amount)    
   
     fetch_nasa_epic_picture(my_secret, args.earth_photo_amount)
     
-    infinity_download_to_telegram(args.frequency_publish, telegram_bot_api_key)
+    infinity_download_to_telegram(telegram_bot_api_key, args.frequency_publish)
     
 
     
