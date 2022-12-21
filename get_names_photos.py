@@ -4,14 +4,8 @@ def get_names_photos ():
 
     names_photos = []
     
-    
-              
- 
-    
     for address, dirs, files in os.walk('images'):
     
-        
-        
         for name in files:
         
             path_photo = os.path.join(address, name)
