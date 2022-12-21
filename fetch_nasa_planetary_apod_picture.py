@@ -49,7 +49,9 @@ def fetch_nasa_planetary_apod_picture(api_key):
 
             hd_link_nasa_photo = nasa_photo_information['url']
             
-            download_image(hd_link_nasa_photo, f"images/nasa_apod_{nasa_photo_information_number-not_photo_count}{image_formated}")
+            path_photo = os.path.join('images', f'nasa_apod_{nasa_photo_information_number-not_photo_count}{image_formated}')
+            
+            download_image(hd_link_nasa_photo, path_photo)
           
         else:
           

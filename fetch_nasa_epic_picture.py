@@ -33,8 +33,10 @@ def fetch_nasa_epic_picture(api_key):
         short_date_link_formated = full_date.date().strftime("%Y/%m/%d")
   
         url = f'https://api.nasa.gov/EPIC/archive/natural/{short_date_link_formated}/png/{name_photo}.png?api_key={api_key}'
+        
+        path_photo = os.path.join('images', f'nasa_epic_{nasa_photo_information_number}.png')
 
-        download_image(url, f"images/nasa_epic_{nasa_photo_information_number}.png")
+        download_image(url, path_photo)
     
 if __name__ == '__main__':
 

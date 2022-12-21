@@ -22,14 +22,16 @@ def infinity_download_to_telegram(telegram_bot_api_key, frequency_publish,):
             random.shuffle(names_photos)
       
             for name_photo in names_photos:
+            
+                path_photo = os.path.join('images', name_photo)
         
-                stats = os.stat(f'images/{name_photo}')
+                stats = os.stat(path_photo)
               
                 if stats.st_size > 20000000:
     
                     continue
               
-                download_to_telegram(telegram_bot_api_key, f'images/{name_photo}')
+                download_to_telegram(telegram_bot_api_key, path_photo)
                  
                 time.sleep(3600*frequency_publish)
 

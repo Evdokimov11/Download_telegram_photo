@@ -1,6 +1,7 @@
 import requests
 import sys
 import argparse
+import os
 
 from download_image import download_image
 
@@ -15,8 +16,10 @@ def fetch_spacex_images(launch_id):
     links_spacex_photo = response.json()['links']['flickr']['original']
 
     for link_spacex_photo_number, link_spacex_photo in enumerate(links_spacex_photo):
+        
+         path_photo = os.path.join('images', f'spacex_{link_spacex_photo_number}.jpg')
 
-         download_image(link_spacex_photo, f"images/spacex_{link_spacex_photo_number}.jpg")
+         download_image(link_spacex_photo, path_photo)
     
      
 
@@ -26,11 +29,11 @@ if __name__ == '__main__':
         description='Программа скачивает фотографии с сайта spacex'
     )
 
-    parser.add_argument('id', help='ID запуска', nargs='?', default='latest')
+    parser.add_argument('launch_id', help='ID запуска', nargs='?', default='latest')
 
     args = parser.parse_args()
     
-    fetch_spacex_images(args.id)
+    fetch_spacex_images(args.launch_id)
     
   
  
