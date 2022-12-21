@@ -1,12 +1,13 @@
 import requests
 import os
+import argparse
 
 from dotenv import load_dotenv
 from download_image import download_image
 from urllib.parse import urlparse
 from datetime import datetime
 
-def fetch_nasa_epic_picture(api_key):
+def fetch_nasa_epic_picture(api_key, amount):
   
     url = 'https://epic.gsfc.nasa.gov/api/natural'
     
@@ -23,7 +24,7 @@ def fetch_nasa_epic_picture(api_key):
 
     for nasa_photo_number, nasa_photo_information in enumerate(response.json()) :
 
-        if nasa_photo_number > 7:
+        if nasa_photo_number == int(amount):
             break
 
         name_photo = nasa_photo_information ['image']
@@ -45,6 +46,14 @@ if __name__ == '__main__':
     load_dotenv()
  
     my_secret = os.environ['NASA_API_KEY']
+    
+    parser = argparse.ArgumentParser(
+        description='Программа скачивает фотографии Земли с сайта NASA'
+    )
 
-    fetch_nasa_epic_picture(my_secret)
+    parser.add_argument('amount', help='Кол-во фотографий для скачивания', nargs='?', default='7')
+
+    args = parser.parse_args()
+
+    fetch_nasa_epic_picture(my_secret, args.amount)
   
