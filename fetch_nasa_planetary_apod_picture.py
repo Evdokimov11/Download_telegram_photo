@@ -1,7 +1,8 @@
 import requests
 import os
-from pprint import pprint
+import argparse
 
+from pprint import pprint
 from dotenv import load_dotenv
 from download_image import download_image
 from urllib.parse import urlparse
@@ -18,13 +19,13 @@ def find_image_format(url):
 
 
 
-def fetch_nasa_planetary_apod_picture(api_key):
+def fetch_nasa_planetary_apod_picture(api_key, amount):
 
     url = 'https://api.nasa.gov/planetary/apod'
     
     payload = {
         'api_key': api_key,
-        'count' : 45,       
+        'count' : amount,       
     }
 
     response = requests.get(url, params=payload)
@@ -62,6 +63,14 @@ if __name__ == '__main__':
     load_dotenv()
  
     my_secret = os.environ['NASA_API_KEY']
+    
+    parser = argparse.ArgumentParser(
+        description='Программа скачивает фотографии космоса с сайта NASA'
+    )
+
+    parser.add_argument('amount', help='Кол-во фотографий для скачивания', nargs='?', default='45')
+
+    args = parser.parse_args()
   
-    fetch_nasa_planetary_apod_picture(my_secret)    
+    fetch_nasa_planetary_apod_picture(my_secret, args.amount)    
   
