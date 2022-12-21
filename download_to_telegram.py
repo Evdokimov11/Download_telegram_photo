@@ -6,13 +6,13 @@ import argparse
 from dotenv import load_dotenv
 
 
-def download_to_telegram(telegram_bot_api_key, photo_path):
+def download_to_telegram(telegram_bot_api_key, photo_path, chat_id):
 
     bot = telegram.Bot(token=telegram_bot_api_key)
   
     if photo_path: 
               
-        bot.send_photo(chat_id='@space_beautiful_photos', photo=open(photo_path, 'rb'))
+        bot.send_photo(chat_id, photo=open(photo_path, 'rb'))
 
     else:
       
@@ -27,7 +27,7 @@ def download_to_telegram(telegram_bot_api_key, photo_path):
 
         random_photo = random.choice(names_photos)
        
-        bot.send_photo(chat_id='@space_beautiful_photos', photo=open(f'images/{random_photo}','rb'))
+        bot.send_photo(chat_id, photo=open(f'images/{random_photo}','rb'))
 
     
 if __name__ == '__main__':
@@ -40,6 +40,8 @@ if __name__ == '__main__':
         description='Программа публикует картинки из в канал телеграм-канал.')
 
     parser.add_argument('-p', '--path', help='Путь к файлу для скачивания')
+    
+    parser.add_argument('-c', '--chat_id', help='Айди чата в формате @chat_id')
 
     args = parser.parse_args()
 
@@ -51,7 +53,7 @@ if __name__ == '__main__':
         
     else:
             
-        download_to_telegram(telegram_bot_api_key, args.path)
+        download_to_telegram(telegram_bot_api_key, args.path, args.chat_id)
     
   
  

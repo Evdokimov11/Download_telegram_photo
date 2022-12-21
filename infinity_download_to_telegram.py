@@ -7,7 +7,7 @@ from download_to_telegram import download_to_telegram
 from dotenv import load_dotenv
 
 
-def infinity_download_to_telegram(telegram_bot_api_key, frequency_publish,): 
+def infinity_download_to_telegram(telegram_bot_api_key, frequency_publish, chat_id): 
 
     names_photos = []
     
@@ -31,7 +31,7 @@ def infinity_download_to_telegram(telegram_bot_api_key, frequency_publish,):
     
                     continue
               
-                download_to_telegram(telegram_bot_api_key, path_photo)
+                download_to_telegram(telegram_bot_api_key, path_photo, chat_id)
                  
                 time.sleep(3600*frequency_publish)
 
@@ -46,8 +46,10 @@ if __name__ == '__main__':
         description='Программа запускает бесконечный цикл для отправки фото в телеграм-канал.')
     
     parser.add_argument('-f', '--frequency_publish', help='Частота публикации фотографий (указать в часах)', type=int, nargs='?', default=4)
+    
+    parser.add_argument('-c', '--chat_id', help='Айди чата в формате @chat_id')
 
     args = parser.parse_args()
                         
-    infinity_download_to_telegram(telegram_bot_api_key, args.frequency_publish)
+    infinity_download_to_telegram(telegram_bot_api_key, args.frequency_publish, args.chat_id)
       
