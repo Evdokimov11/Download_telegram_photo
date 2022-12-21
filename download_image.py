@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 import argparse
 
 
-def download_image(url, file_path):
+def download_image(url, file_path, payload = {}):
   
     print(file_path)
   
@@ -16,7 +16,7 @@ def download_image(url, file_path):
 
     file_path_name = os.path.split(path_url)
   
-    response = requests.get(url)
+    response = requests.get(url, params=payload)
   
     response.raise_for_status()
   
@@ -25,8 +25,6 @@ def download_image(url, file_path):
     with open(file_path, 'wb') as file:
         
         file.write(response.content)
-  
-    return
 
 
 if __name__ == '__main__':

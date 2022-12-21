@@ -18,6 +18,8 @@ def fetch_nasa_epic_picture(api_key):
     response = requests.get(url, params=payload)
 
     response.raise_for_status()
+    
+    payload.pop('date')
 
     for nasa_photo_number, nasa_photo_information in enumerate(response.json()) :
 
@@ -32,11 +34,11 @@ def fetch_nasa_epic_picture(api_key):
  
         short_date_link_formated = full_date.date().strftime("%Y/%m/%d")
   
-        url = f'https://api.nasa.gov/EPIC/archive/natural/{short_date_link_formated}/png/{name_photo}.png?api_key={api_key}'
+        url = f'https://api.nasa.gov/EPIC/archive/natural/{short_date_link_formated}/png/{name_photo}.png'
         
         path_photo = os.path.join('images', f'nasa_epic_{nasa_photo_number}.png')
 
-        download_image(url, path_photo)
+        download_image(url, path_photo, payload)
     
 if __name__ == '__main__':
 
