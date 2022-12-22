@@ -5,7 +5,7 @@ import argparse
 
 from download_to_telegram import download_to_telegram
 from dotenv import load_dotenv
-from get_names_photos import get_names_photos
+from scripts import scripts
 
 
 def infinity_download_to_telegram(telegram_bot_api_key, frequency_publish, chat_id): 
