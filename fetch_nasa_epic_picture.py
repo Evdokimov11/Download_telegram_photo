@@ -24,7 +24,7 @@ def fetch_nasa_epic_picture(api_key, amount, time):
 
     for nasa_photo_number, nasa_photo_information in enumerate(response.json()) :
 
-        if nasa_photo_number == int(amount):
+        if nasa_photo_number == amount:
             break
 
         name_photo = nasa_photo_information ['image']
@@ -51,7 +51,7 @@ if __name__ == '__main__':
         description='Программа скачивает фотографии Земли с сайта NASA'
     )
 
-    parser.add_argument('amount', help='Кол-во фотографий для скачивания', nargs='?', default='7')
+    parser.add_argument('amount', help='Кол-во фотографий для скачивания', type=int, nargs='?', default='7')
     
     parser.add_argument('-d', '--date', help='Дата фотографий Земли в формате YYYY-MM-DD', nargs='?', default='2022-01-01')
 
