@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 import argparse
 
 
-def download_image(url, file_path, payload = {}):
+def download_image(url, file_path, payload = None):
   
     divided_url = urlparse(file_path)
   
