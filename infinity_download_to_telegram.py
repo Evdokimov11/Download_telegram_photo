@@ -31,7 +31,7 @@ def infinity_download_to_telegram(telegram_bot_api_key, frequency_publish, chat_
             
                 print ('Network error :', er)
 
-                time.sleep(300)
+                time.sleep(600)
      
 
 if __name__ == '__main__':
