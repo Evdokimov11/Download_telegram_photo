@@ -42,11 +42,11 @@ def fetch_nasa_planetary_apod_picture(api_key, amount):
 
             nasa_photo_link = nasa_photo_information['url']
             
-            image_formated = find_image_format(nasa_photo_link)
+            formated_image = find_image_format(nasa_photo_link)
             
-            path_photo = os.path.join('images', f'nasa_apod_{nasa_photo_number}{image_formated}')
+            photo_path = os.path.join('images', f'nasa_apod_{nasa_photo_number}{formated_image}')
             
-            download_image(nasa_photo_link, path_photo)
+            download_image(nasa_photo_link, photo_path)
           
 
 if __name__ == '__main__':

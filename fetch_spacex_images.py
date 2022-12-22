@@ -13,13 +13,13 @@ def fetch_spacex_images(launch_id):
 
     response.raise_for_status()
 
-    links_spacex_photo = response.json()['links']['flickr']['original']
+    spacex_photo_links = response.json()['links']['flickr']['original']
 
-    for photo_link_number, spacex_photo_link in enumerate(links_spacex_photo):
+    for photo_link_number, spacex_photo_link in enumerate(spacex_photo_links):
         
-         path_photo = os.path.join('images', f'spacex_{photo_link_number}.jpg')
+         photo_path = os.path.join('images', f'spacex_{photo_link_number}.jpg')
 
-         download_image(spacex_photo_link, path_photo)
+         download_image(spacex_photo_link, photo_path)
     
      
 
