@@ -14,7 +14,9 @@ def download_to_telegram(telegram_bot_api_key, photo_path, chat_id):
   
     if photo_path: 
               
-        bot.send_photo(chat_id, photo=open(photo_path, 'rb'))
+        with open(photo_path, 'rb') as photo:
+       
+            bot.send_photo(chat_id, photo)
 
     else:
       
