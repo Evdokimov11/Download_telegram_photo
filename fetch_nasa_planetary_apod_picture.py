@@ -32,21 +32,21 @@ def fetch_nasa_planetary_apod_picture(api_key, amount):
 
     response.raise_for_status()
 
-    nasa_photos_information = response.json()
+    photos_information = response.json()
 
-    filtered_photos_information = [dictionary for dictionary in nasa_photos_information if 
+    filtered_information = [dictionary for dictionary in photos_information if 
                                   dict['media_type'] != 'other' and 
                                   find_image_format(dict['url'])]
   
-    for nasa_photo_number, nasa_photo_information in enumerate(filtered_photos_information):
+    for photo_number, photo_information in enumerate(filtered_information):
 
-            nasa_photo_link = nasa_photo_information['url']
+            photo_link = photo_information['url']
             
-            formated_image = find_image_format(nasa_photo_link)
+            formated_image = find_image_format(photo_link)
             
-            photo_path = os.path.join('images', f'nasa_apod_{nasa_photo_number}{formated_image}')
+            photo_path = os.path.join('images', f'nasa_apod_{photo_number}{formated_image}')
             
-            download_image(nasa_photo_link, photo_path)
+            download_image(photo_link, photo_path)
           
 
 if __name__ == '__main__':
