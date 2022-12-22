@@ -22,22 +22,22 @@ def fetch_nasa_epic_picture(api_key, amount, time):
     
     payload.pop('date')
 
-    for nasa_photo_number, nasa_photo_information in enumerate(response.json()) :
+    for photo_number, photo_information in enumerate(response.json()) :
 
-        if nasa_photo_number == amount:
+        if photo_number == amount:
             break
 
-        name_photo = nasa_photo_information ['image']
+        name_photo = photo_information ['image']
 
-        date_str = nasa_photo_information['date']
+        date_str = photo_information['date']
       
         full_date = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S')
  
-        short_date_link_formated = full_date.date().strftime("%Y/%m/%d")
+        short_date_link = full_date.date().strftime("%Y/%m/%d")
   
-        url = f'https://api.nasa.gov/EPIC/archive/natural/{short_date_link_formated}/png/{name_photo}.png'
+        url = f'https://api.nasa.gov/EPIC/archive/natural/{short_date_link}/png/{name_photo}.png'
         
-        path_photo = os.path.join('images', f'nasa_epic_{nasa_photo_number}.png')
+        path_photo = os.path.join('images', f'nasa_epic_{photo_number}.png')
 
         download_image(url, path_photo, payload)
     
