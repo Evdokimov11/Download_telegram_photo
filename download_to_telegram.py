@@ -4,7 +4,7 @@ import random
 import argparse
 
 from dotenv import load_dotenv
-from scripts import scripts
+from scripts import get_names_photos
 
 
 

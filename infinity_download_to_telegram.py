@@ -2,10 +2,11 @@ import os
 import random
 import time
 import argparse
+import telegram
 
 from download_to_telegram import download_to_telegram
 from dotenv import load_dotenv
-from scripts import scripts
+from scripts import get_names_photos
 
 
 def infinity_download_to_telegram(telegram_bot_api_key, frequency_publish, chat_id): 
@@ -19,11 +20,19 @@ def infinity_download_to_telegram(telegram_bot_api_key, frequency_publish, chat_
         for name_photo in names_photos:
             
             path_photo = os.path.join('images', name_photo)
+            
+            try:
               
-            download_to_telegram(telegram_bot_api_key, path_photo, chat_id)
+                download_to_telegram(telegram_bot_api_key, path_photo, chat_id)
                  
-            time.sleep(3600*frequency_publish)
+                time.sleep(3600*frequency_publish)
+                
+            except telegram.error.NetworkError as er:
+            
+                print ('Network error :', er)
 
+                time.sleep(300)
+     
 
 if __name__ == '__main__':
 
