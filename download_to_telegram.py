@@ -5,6 +5,7 @@ import argparse
 
 from dotenv import load_dotenv
 from scripts import get_names_photos
+from scripts import send_to_telegram
 
 
 
@@ -14,21 +15,17 @@ def download_to_telegram(telegram_bot_api_key, photo_path, chat_id):
   
     if photo_path: 
               
-        with open(photo_path, 'rb') as photo:
-       
-            bot.send_photo(chat_id, photo)
+        send_to_telegram(photo_path, chat_id, bot)
 
     else:
-      
+    
         names_photos = get_names_photos()
 
         random_photo = random.choice(names_photos)
         
         rand_photo_path = os.path.join('images', random_photo)
         
-        with open(rand_photo_path, 'rb') as photo:
-       
-            bot.send_photo(chat_id, photo)
+        send_to_telegram(rand_photo_path, chat_id, bot)
 
     
 if __name__ == '__main__':

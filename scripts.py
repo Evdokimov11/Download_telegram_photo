@@ -30,4 +30,11 @@ def is_photo_small(path_photo):
         print('The photo is too big')
         
         return False
+
+
+def send_to_telegram(photo_path, chat_id, bot):
+
+    with open(photo_path, 'rb') as photo:
+
+        bot.send_photo(chat_id, photo)  
     
