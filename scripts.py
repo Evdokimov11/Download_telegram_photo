@@ -22,17 +22,9 @@ def is_photo_small(path_photo):
 
     stats = os.stat(path_photo)
               
-    if stats.st_size < 20000000:
+    return stats.st_size < 20000000
             
-        return True
-        
-    else:
-
-        print('The photo is too big')
-        
-        return False
-
-
+     
 def send_to_telegram(photo_path, chat_id, bot):
 
     with open(photo_path, 'rb') as photo:
