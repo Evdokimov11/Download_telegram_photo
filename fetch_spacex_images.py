@@ -4,6 +4,7 @@ import os
 
 from download_image import download_image
 
+
 def fetch_spacex_images(launch_id):
 
     url = f'https://api.spacexdata.com/v5/launches/{launch_id}' 
@@ -21,7 +22,6 @@ def fetch_spacex_images(launch_id):
          download_image(spacex_photo_link, photo_path)
     
      
-
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(
@@ -33,7 +33,3 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     fetch_spacex_images(args.launch_id)
-    
-  
- 
-

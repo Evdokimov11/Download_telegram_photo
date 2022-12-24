@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from download_image import download_image
 from datetime import datetime
 
+
 def fetch_nasa_epic_picture(api_key, amount, time):
   
     url = 'https://epic.gsfc.nasa.gov/api/natural'
@@ -40,6 +41,7 @@ def fetch_nasa_epic_picture(api_key, amount, time):
 
         download_image(url, path_photo, payload)
     
+
 if __name__ == '__main__':
 
     load_dotenv()

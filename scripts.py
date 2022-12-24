@@ -1,5 +1,6 @@
 import os
 
+
 def get_names_photos (): 
 
     names_photos = []

@@ -8,7 +8,6 @@ from scripts import get_names_photos
 from scripts import send_to_telegram
 
 
-
 def download_to_telegram(telegram_bot_api_key, photo_path, chat_id):
 
     bot = telegram.Bot(token=telegram_bot_api_key)

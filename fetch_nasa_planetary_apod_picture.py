@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from download_image import download_image
 from urllib.parse import urlparse
 
+
 def find_image_format(url):
 
     divided_url = urlparse(url)
@@ -15,7 +16,6 @@ def find_image_format(url):
     root_ext = os.path.splitext(path_url)
   
     return root_ext[1]
-
 
 
 def fetch_nasa_planetary_apod_picture(api_key, amount):
