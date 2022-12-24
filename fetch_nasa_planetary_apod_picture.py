@@ -35,8 +35,8 @@ def fetch_nasa_planetary_apod_picture(api_key, amount):
     photos_information = response.json()
 
     filtered_information = [dictionary for dictionary in photos_information if 
-                                  dict['media_type'] != 'other' and 
-                                  find_image_format(dict['url'])]
+                                  dictionary['media_type'] != 'other' and 
+                                  find_image_format(dictionary['url'])]
   
     for photo_number, photo_information in enumerate(filtered_information):
 
