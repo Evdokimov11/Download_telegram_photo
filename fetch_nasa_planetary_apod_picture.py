@@ -2,7 +2,6 @@ import requests
 import os
 import argparse
 
-from pprint import pprint
 from dotenv import load_dotenv
 from download_image import download_image
 from urllib.parse import urlparse

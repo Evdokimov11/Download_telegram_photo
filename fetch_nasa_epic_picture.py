@@ -4,7 +4,6 @@ import argparse
 
 from dotenv import load_dotenv
 from download_image import download_image
-from urllib.parse import urlparse
 from datetime import datetime
 
 def fetch_nasa_epic_picture(api_key, amount, time):
