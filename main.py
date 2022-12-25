@@ -2,7 +2,6 @@ import argparse
 import os
 
 from dotenv import load_dotenv
-
 from fetch_nasa_epic_picture import fetch_nasa_epic_picture
 from fetch_nasa_planetary_apod_picture import fetch_nasa_planetary_apod_picture
 from fetch_spacex_images import fetch_spacex_images
